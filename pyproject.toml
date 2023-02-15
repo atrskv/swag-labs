@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "swag-labs"
+version = "0.1.0"
+description = ""
+authors = ["Aleksei <trrskv@gmail.com>"]
+readme = "README.md"
+packages = [{include = "swag_labs"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
