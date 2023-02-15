@@ -10,6 +10,7 @@ packages = [{include = "swag_labs"}]
 python = "^3.10"
 pytest = "^7.2.1"
 selene = "^2.0.0b16"
+python-dotenv = "^0.21.1"
 
 
 [tool.poetry.group.dev.dependencies]
