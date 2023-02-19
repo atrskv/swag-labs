@@ -16,3 +16,6 @@ class TextField:
 
     def type_lastname(self, lastname: str):
         self.element.type(lastname)
+
+    def type_postal_code(self, postal_code: str):
+        self.element.type(postal_code)
