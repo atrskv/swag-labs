@@ -1,5 +1,3 @@
-from datetime import time
-
 from data.users import standart_customer
 from data.products import backpack, jacket, t_shirt
 from swag_labs.model.application import Application as app
@@ -8,7 +6,7 @@ from swag_labs.model.application import Application as app
 def test_add_product_to_cart_and_order_it(
 
         given_browser_management,
-        given_logged_standart_customer):
+        given_standart_customer):
 
     (
         app
@@ -19,7 +17,7 @@ def test_add_product_to_cart_and_order_it(
         .go_to_cart()
         .checkout()
         .set_users_information(
-            standart_customer.name,
+            standart_customer.firstname,
             standart_customer.lastname,
             standart_customer.postal_code)
         .continue_ordering()
@@ -32,7 +30,7 @@ def test_add_product_to_cart_and_order_it(
 def test_add_product_to_cart_and_remove_it(
 
         given_browser_management,
-        given_logged_standart_customer):
+        given_standart_customer):
 
     (
         app
@@ -50,7 +48,7 @@ def test_add_product_to_cart_and_remove_it(
 def test_sort_products_by_price_low_to_high(
 
         given_browser_management,
-        given_logged_standart_customer):
+        given_standart_customer):
 
     (
         app
@@ -66,7 +64,7 @@ def test_sort_products_by_price_low_to_high(
 def test_sort_products_by_name_z_to_a(
 
         given_browser_management,
-        given_logged_standart_customer):
+        given_standart_customer):
 
     (
         app
@@ -75,14 +73,14 @@ def test_sort_products_by_name_z_to_a(
         .sort_products_by_name_z_to_a()
 
         .products_should_be_sorted_by_name_z_to_a(
-            first_in_sorting=t_shirt.name)
+            first_product_in_sorting=t_shirt.name)
     )
 
 
 def test_checkout_without_firstname(
 
         given_browser_management,
-        given_logged_standart_customer):
+        given_standart_customer):
 
     (
         app
@@ -96,6 +94,7 @@ def test_checkout_without_firstname(
             lastname=standart_customer.lastname,
             postal_code=standart_customer.postal_code)
         .continue_ordering()
+
         .error_button_should_have_text('First Name is required')
         )
 
@@ -103,7 +102,7 @@ def test_checkout_without_firstname(
 def test_checkout_without_lastname(
 
         given_browser_management,
-        given_logged_standart_customer):
+        given_standart_customer):
 
     (
         app
@@ -114,9 +113,10 @@ def test_checkout_without_lastname(
         .go_to_cart()
         .checkout()
         .set_users_information(
-            name=standart_customer.name,
+            firstname=standart_customer.firstname,
             postal_code=standart_customer.postal_code)
         .continue_ordering()
+
         .error_button_should_have_text('Last Name is required')
         )
 
@@ -124,7 +124,7 @@ def test_checkout_without_lastname(
 def test_checkout_without_postal_code(
 
         given_browser_management,
-        given_logged_standart_customer):
+        given_standart_customer):
 
     (
         app
@@ -135,22 +135,39 @@ def test_checkout_without_postal_code(
         .go_to_cart()
         .checkout()
         .set_users_information(
-            name=standart_customer.name,
+            firstname=standart_customer.firstname,
             lastname=standart_customer.lastname)
         .continue_ordering()
+
         .error_button_should_have_text('Postal Code is required')
         )
 
 
-# def test_checkout_without_lastname(browser_management):
-#
-#
-# def test_checkout_without_postal_code(browser_management):
-#
-#
-#
-# def continue_shopping_after_adding_the_item_to_cart(browser_management):
+def test_continue_shopping_after_adding_the_item_to_cart(
+        given_browser_management,
+        given_standart_customer):
 
+    (
+            app
+            .store_shelf
+            .open()
+            .go_to_product_page(jacket.name)
+            .add_product_to_cart()
+
+            .back_to_products()
+
+            .go_to_product_page(t_shirt.name)
+            .go_to_cart()
+            .checkout()
+            .set_users_information(
+                standart_customer.firstname,
+                standart_customer.lastname,
+                standart_customer.postal_code)
+            .continue_ordering()
+            .confirm()
+
+            .successful_order_notification_is_visible()
+        )
 
 
 

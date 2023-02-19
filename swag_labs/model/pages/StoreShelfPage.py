@@ -24,8 +24,8 @@ class StoreShelfPage:
         browser.element('.shopping_cart_link').click()
         return self
 
-    def set_users_information(self, name='', lastname='', postal_code=''):
-        browser.element('#first-name').type(name)
+    def set_users_information(self, firstname='', lastname='', postal_code=''):
+        browser.element('#first-name').type(firstname)
         browser.element('#last-name').type(lastname)
         browser.element('#postal-code').type(postal_code)
         return self
@@ -84,10 +84,14 @@ class StoreShelfPage:
         browser.all('.inventory_item_price').first.should(have.exact_text(f'${price}'))
         return self
 
-    def products_should_be_sorted_by_name_z_to_a(self, first_in_sorting):
-        browser.all('.inventory_item_name').first.should(have.text(first_in_sorting))
-    #
-    #
+    def products_should_be_sorted_by_name_z_to_a(self, first_product_in_sorting):
+        browser.all('.inventory_item_name').first.should(have.text(first_product_in_sorting))
+        return self
+
+
+    def back_to_products(self):
+        browser.element('#back-to-products').click()
+        return self
 
 
 

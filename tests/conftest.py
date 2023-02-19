@@ -10,8 +10,14 @@ def given_browser_management():
     browser.config.hold_browser_open = False
 
 
-@pytest.fixture(scope='session', autouse=True)
-def given_logged_standart_customer():
+    yield
+
+
+    browser.quit()
+
+
+@pytest.fixture(scope='function', autouse=True)
+def given_standart_customer():
 
     load_dotenv()
 
@@ -23,4 +29,5 @@ def given_logged_standart_customer():
             standart_customer.login,
             standart_customer.password
         )
+
     )

@@ -7,7 +7,7 @@ fake = faker.Faker()
 
 @dataclass
 class User:
-    name: str
+    firstname: str
     lastname: str
     postal_code: str
     login: str
@@ -17,9 +17,9 @@ class User:
 
 
 standart_customer = \
-    User(name='Aleksei',
-         lastname='Torsukov',
-         postal_code='20018',
+    User(firstname=fake.name_male(),
+         lastname=fake.last_name_male(),
+         postal_code=fake.postalcode(),
         login=os.getenv('STANDART_CUSTOMER_LOGIN'),
         password=os.getenv('STANDART_CUSTOMER_PASSWORD')
     )
