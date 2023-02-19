@@ -1,18 +1,17 @@
-from data.users import standart_customer
-from data.products import backpack, jacket, t_shirt
 from swag_labs.model.application import Application as app
 
 
 def test_add_product_to_cart_and_order_it(
 
-        given_browser_management,
-        given_standart_customer):
+        browser_management,
+        standart_customer,
+        products):
 
     (
         app
         .store_shelf
         .open()
-        .go_to_product_page(backpack.name)
+        .go_to_product_page(products[0].name)
         .add_product_to_cart()
         .go_to_cart()
         .checkout()
@@ -24,19 +23,20 @@ def test_add_product_to_cart_and_order_it(
         .confirm()
 
         .successful_order_notification_is_visible()
-        )
+    )
 
 
 def test_add_product_to_cart_and_remove_it(
 
-        given_browser_management,
-        given_standart_customer):
+        browser_management,
+        standart_customer,
+        products):
 
     (
         app
         .store_shelf
         .open()
-        .go_to_product_page(backpack.name)
+        .go_to_product_page(products[0].name)
         .add_product_to_cart()
         .remove_product_from_cart()
         .go_to_cart()
@@ -47,8 +47,9 @@ def test_add_product_to_cart_and_remove_it(
 
 def test_sort_products_by_price_low_to_high(
 
-        given_browser_management,
-        given_standart_customer):
+        browser_management,
+        standart_customer,
+        products):
 
     (
         app
@@ -57,14 +58,15 @@ def test_sort_products_by_price_low_to_high(
         .sort_products_by_price_high_to_low()
 
         .products_should_be_sorted_by_highest_price(
-            price=jacket.price)
+            price=products[1].price)
     )
 
 
 def test_sort_products_by_name_z_to_a(
 
-        given_browser_management,
-        given_standart_customer):
+        browser_management,
+        standart_customer,
+        products):
 
     (
         app
@@ -73,20 +75,21 @@ def test_sort_products_by_name_z_to_a(
         .sort_products_by_name_z_to_a()
 
         .products_should_be_sorted_by_name_z_to_a(
-            first_product_in_sorting=t_shirt.name)
+            first_product_in_sorting=products[2].name)
     )
 
 
 def test_checkout_without_firstname(
 
-        given_browser_management,
-        given_standart_customer):
+        browser_management,
+        standart_customer,
+        products):
 
     (
         app
         .store_shelf
         .open()
-        .go_to_product_page(jacket.name)
+        .go_to_product_page(products[1].name)
         .add_product_to_cart()
         .go_to_cart()
         .checkout()
@@ -101,14 +104,15 @@ def test_checkout_without_firstname(
 
 def test_checkout_without_lastname(
 
-        given_browser_management,
-        given_standart_customer):
+        browser_management,
+        standart_customer,
+        products):
 
     (
         app
         .store_shelf
         .open()
-        .go_to_product_page(jacket.name)
+        .go_to_product_page(products[1].name)
         .add_product_to_cart()
         .go_to_cart()
         .checkout()
@@ -123,14 +127,15 @@ def test_checkout_without_lastname(
 
 def test_checkout_without_postal_code(
 
-        given_browser_management,
-        given_standart_customer):
+        browser_management,
+        standart_customer,
+        products):
 
     (
         app
         .store_shelf
         .open()
-        .go_to_product_page(jacket.name)
+        .go_to_product_page(products[1].name)
         .add_product_to_cart()
         .go_to_cart()
         .checkout()
@@ -140,23 +145,24 @@ def test_checkout_without_postal_code(
         .continue_ordering()
 
         .error_button_should_have_text('Postal Code is required')
-        )
+    )
 
 
 def test_continue_shopping_after_adding_the_item_to_cart(
-        given_browser_management,
-        given_standart_customer):
+
+        browser_management,
+        standart_customer,
+        products):
 
     (
             app
             .store_shelf
             .open()
-            .go_to_product_page(jacket.name)
+            .go_to_product_page(products[0].name)
             .add_product_to_cart()
-
             .back_to_products()
-
-            .go_to_product_page(t_shirt.name)
+            .go_to_product_page(products[1].name)
+            .add_product_to_cart()
             .go_to_cart()
             .checkout()
             .set_users_information(
@@ -167,7 +173,7 @@ def test_continue_shopping_after_adding_the_item_to_cart(
             .confirm()
 
             .successful_order_notification_is_visible()
-        )
+    )
 
 
 
