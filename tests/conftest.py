@@ -16,7 +16,7 @@ def given_browser_management():
     browser.quit()
 
 
-@pytest.fixture(scope='function', autouse=True)
+@pytest.fixture(scope='function', autouse=False)
 def given_standart_customer():
 
     load_dotenv()

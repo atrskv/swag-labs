@@ -1,9 +1,7 @@
 import os
+import faker
 from dataclasses import dataclass
 
-import faker
-
-fake = faker.Faker()
 
 @dataclass
 class User:
@@ -14,13 +12,25 @@ class User:
     password: str
 
 
-
+fake = faker.Faker()
 
 standart_customer = \
     User(firstname=fake.name_male(),
          lastname=fake.last_name_male(),
          postal_code=fake.postalcode(),
-        login=os.getenv('STANDART_CUSTOMER_LOGIN'),
-        password=os.getenv('STANDART_CUSTOMER_PASSWORD')
-    )
+         login=os.getenv('STANDART_CUSTOMER_LOGIN'),
+         password=os.getenv('STANDART_CUSTOMER_PASSWORD'))
 
+problem_customer = \
+    User(firstname=fake.name_male(),
+         lastname=fake.last_name_male(),
+         postal_code=fake.postalcode(),
+         login=os.getenv('PROBLEM_CUSTOMER_LOGIN'),
+         password=os.getenv('PROBLEM_CUSTOMER_PASSWORD'))
+
+locked_out_user = \
+    User(firstname=fake.name_male(),
+         lastname=fake.last_name_male(),
+         postal_code=fake.postalcode(),
+         login=os.getenv('LOCKED_OUT_CUSTOMER_LOGIN'),
+         password=os.getenv('LOCKED_OUT_CUSTOMER_PASSWORD'))
