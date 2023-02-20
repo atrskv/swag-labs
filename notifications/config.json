@@ -1,0 +1,17 @@
+{
+  "base": {
+    "logo": "resources/swag_labs_logo.png",
+    "project": "Swag Labs",
+    "environment": "QA",
+    "comment": "",
+    "reportLink": "https://jenkins.autotests.cloud/job/001-torsukov-jenkins_unit09/32/",
+    "language": "ru",
+    "allureFolder": "allure-results",
+    "enableChart": true
+  },
+  "telegram": {
+    "token": "5572234958:AAHDCbWbTSo0j36XHvy4X57vYJtlKIawrXg",
+    "chat": "-1001860857153",
+    "replyTo": ""
+  }
+}

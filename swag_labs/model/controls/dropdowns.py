@@ -1,6 +1,6 @@
 from selene.support.shared import browser
-
 from selene import Element
+
 
 class Dropdown:
 
@@ -9,6 +9,3 @@ class Dropdown:
 
     def sort_by(self, value='az'):
         browser.element(f'[value={value}]').click()
-
-
-
