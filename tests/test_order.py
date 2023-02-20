@@ -58,6 +58,7 @@ def test_add_product_to_cart_and_remove_it(
         .cart_should_not_have_a_product()
     )
 
+
 @allure.tag('web')
 @allure.title('Сортировка товаров по цене от большего к меньшему')
 def test_sort_products_by_price_high_to_low(
@@ -79,6 +80,7 @@ def test_sort_products_by_price_high_to_low(
             highest_price=products['jacket'].price)
     )
 
+
 @allure.tag('web')
 @allure.title('Сортировка товаров по имени от "Z" до "A"')
 def test_sort_products_by_name_z_to_a(
@@ -99,6 +101,7 @@ def test_sort_products_by_name_z_to_a(
         .products_should_be_sorted_by_name_z_to_a(
             first_product_in_sorting=products['t_shirt'].name)
     )
+
 
 @allure.tag('web')
 @allure.title('Оформление заказа без указания имени')
@@ -130,6 +133,7 @@ def test_checkout_without_firstname(
         .error_button_should_have_text('First Name is required')
         )
 
+
 @allure.tag('web')
 @allure.title('Оформление заказа без указания фамилии')
 def test_checkout_without_lastname(
@@ -160,6 +164,7 @@ def test_checkout_without_lastname(
         .error_button_should_have_text('Last Name is required')
         )
 
+
 @allure.tag('web')
 @allure.title('Оформление заказа без почтового кода')
 def test_checkout_without_postal_code(
@@ -189,6 +194,7 @@ def test_checkout_without_postal_code(
 
         .error_button_should_have_text('Postal Code is required')
     )
+
 
 @allure.tag('web')
 @allure.title('Возврат к просмотру товаров после добавления вещи в корзину и оформление заказа')
@@ -224,8 +230,3 @@ def test_continue_shopping_after_adding_the_item_to_cart(
 
         .successful_order_notification_is_visible('THANK YOU FOR YOUR ORDER')
     )
-
-
-
-
-
