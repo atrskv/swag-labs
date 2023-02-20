@@ -170,4 +170,4 @@ dmypy.json
 cython_debug/
 
 # notifications (telegram token)
-notifications/config.json
+config.json
