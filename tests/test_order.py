@@ -45,7 +45,7 @@ def test_add_product_to_cart_and_remove_it(
     )
 
 
-def test_sort_products_by_price_low_to_high(
+def test_sort_products_by_price_high_to_low(
 
         browser_management,
         standart_customer,
